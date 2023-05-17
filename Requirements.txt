@@ -1,0 +1,13 @@
+Per a poder executar correctament el notebook cal tenir instal·lats els següents python packages:
+
+cv2
+
+rembg
+
+En cas de no tenir-los instal·lats, empreu les següents comandes :
+
+!pip install --upgrade pip
+!pip install opencv-python
+!pip install opencv-python-headless
+
+!pip install rembg
