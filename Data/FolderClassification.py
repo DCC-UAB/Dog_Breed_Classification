@@ -1,4 +1,5 @@
 import os
+import sys
 import shutil
 import pandas as pd
 
@@ -11,10 +12,10 @@ unique_labels = train_labels["breed"].unique()
 print("Creating folders...")
 for label in unique_labels:
     try:
-     os.mkdir(path_imgs_train+"/"+label)
+        os.mkdir(path_imgs_train+"/"+label)
     except:
         print("Folder already exists, exiting execution...")
-        quit()
+        sys.exit()
 
 print("Moving images...")
 for name, label in zip(train_labels.id, train_labels.breed):
