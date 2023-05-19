@@ -9,8 +9,8 @@ def DogsDatasetDataloders(transformer, batch_size, num_workers, shuffle=True):
     print("Using: ", device)
 
     #loading data
-    dataset = torchvision.datasets.ImageFolder('../Dog-Breed-classif/train')
-    labels = pd.read_csv("../Dog-Breed-classif/labels.csv")
+    dataset = torchvision.datasets.ImageFolder('./Dog-Breed-classif/train')
+    labels = pd.read_csv("./Dog-Breed-classif/labels.csv")
 
     #splitting data
     dataset_len = labels.shape[0]
