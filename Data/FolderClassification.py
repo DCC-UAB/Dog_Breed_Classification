@@ -3,8 +3,10 @@ import sys
 import shutil
 import pandas as pd
 
-path_labels = '../Dog-Breed-classif/labels.csv'
-path_imgs_train = '../Dog-Breed-classif/train'
+print("Input the path to the dataset images (Current working directory:", os.getcwd(), ")")
+path = input()
+path_labels = path+'/labels.csv'
+path_imgs_train = path+'/train'
 
 train_labels = pd.read_csv(path_labels)
 unique_labels = train_labels["breed"].unique()

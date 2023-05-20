@@ -15,15 +15,17 @@ class MyDataset(torch.utils.data.Dataset):
     def __len__(self):
         return len(self.subset)
 
-def DogsDatasetDataloders(transformer, batch_size, num_workers, shuffle=True):
+
+def DogsDatasetDataloders(transformer, batch_size, num_workers, dataset_path, shuffle=True):
+
     #activate cuda for performance enhacement
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     print("Using: ", device)
 
     #loading data
     # loading data
-    dataset = torchvision.datasets.ImageFolder('./Dog-Breed-classif/train')
-    labels = pd.read_csv("./Dog-Breed-classif/labels.csv")
+    dataset = torchvision.datasets.ImageFolder(dataset_path+'/train')
+    labels = pd.read_csv(dataset_path+'/labels.csv')
 
     # splitting data
     dataset_len = labels.shape[0]
