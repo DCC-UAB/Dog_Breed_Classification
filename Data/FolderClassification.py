@@ -23,6 +23,9 @@ print("Moving images...")
 for name, label in zip(train_labels.id, train_labels.breed):
     path_img = path_imgs_train+"/"+name+".jpg"
     new_path = path_imgs_train + "/" + label + "/" + name + ".jpg"
-    shutil.move(path_img, new_path)
+    try:
+        shutil.move(path_img, new_path)
+    except:
+        print("Image not found, proceeding with the rest")
 
 print("Images moved")
