@@ -16,14 +16,13 @@ class MyDataset(torch.utils.data.Dataset):
         return len(self.subset)
 
 
-def DogsDatasetDataloders(transformer, batch_size, num_workers, dataset_path, shuffle=True):
+def dogs_dataset_dataloders(transformer, batch_size, num_workers, dataset_path, shuffle=True):
 
     #activate cuda for performance enhacement
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     print("Using: ", device)
 
     #loading data
-    # loading data
     dataset = torchvision.datasets.ImageFolder(dataset_path+'/train')
     labels = pd.read_csv(dataset_path+'/labels.csv')
 
@@ -38,6 +37,7 @@ def DogsDatasetDataloders(transformer, batch_size, num_workers, dataset_path, sh
     validation_subset = torch.utils.data.Subset(dataset, validation_indexes)
     validation_dataset = MyDataset(validation_subset, transform=transformer["val"])
 
+    #creating dataloaders
     dataloaders_dict = {"train": torch.utils.data.DataLoader(train_dataset, batch_size=batch_size, shuffle=shuffle, num_workers=num_workers),
                         "val": torch.utils.data.DataLoader(validation_dataset, batch_size=batch_size, shuffle=shuffle, num_workers=num_workers)}
 
