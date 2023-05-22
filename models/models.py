@@ -43,9 +43,9 @@ def initialize_model_regnet_x_16(num_classes):
     return model, input_size
 
 
-def initialize_model_regnet_x_16(num_classes):
+def initialize_model_resnext101_32x8d(num_classes):
     # Resnet18
-    model = torchvision.models.regnet_x_16gf(pretrained=True)
+    model = torchvision.models.resnext101_32x8d(pretrained=True)
     set_parameter_requires_grad(model, True)
     model.fc = nn.Linear(2048, num_classes)
     input_size = 224
