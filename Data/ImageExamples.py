@@ -9,6 +9,12 @@ import torchvision.transforms as T
 import warnings
 warnings.filterwarnings('ignore')
 
+"""
+The provided code aims to apply a variety of transformations to images, including converting them to grayscale, 
+normalizing, jittering, blurring, and flipping, among others. These transformations are integral in augmenting the dataset, 
+enhancing model robustness, and potentially improving the performance of image recognition tasks.
+"""
+
 #Preparing variables
 n=4
 
@@ -100,4 +106,3 @@ if(saving=="y"):
   v_flip_fig.savefig(".\Image_galery\V_flipped_dog.png")
   comb_fig.savefig(".\Image_galery\Combined_transforms_dog.png")
   print("Images saved succesfully")
-
