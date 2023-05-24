@@ -10,7 +10,7 @@ The primary objective of the Dog Breed Classifier project is to develop an advan
 ## Code structure
 Our code follows the next structure :
 ```bash
-├── Data \\
+├── Data
 │   ├── __init__.py
 │   ├── FolderClassification.py
 │   └── ImageExamples.py
