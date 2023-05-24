@@ -1,3 +1,4 @@
+# Imports
 import pandas as pd
 from tqdm import tqdm
 import re
@@ -7,6 +8,10 @@ import torch
 # Falta importar els labels
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
+"""
+This function is used in the menu, which is called in the main.py. Its a general call for all the models we have made.
+While we are evaluating the model, the predictions and accuracy of the test set are returned and saved. 
+"""
 
 def test(model, dataloader):
     model.eval()
