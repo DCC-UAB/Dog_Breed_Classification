@@ -1,16 +1,21 @@
+# Imports
 import os
 import random
-import wandb
+import torch
 
 import numpy as np
-import torch
+import torch.optim as optim
 import torch.nn as nn
 import torchvision
 import torchvision.transforms as transforms
+import matplotlib.pyplot as plt
+
 
 from train import *
-from test import *
-from utils.utils import *
+from utils.utils import model_metrics_plot
+from utils.DataLoader import *
+from utils.Transformations import *
+from models.Models import XV3V2N
 from tqdm.auto import tqdm
 
 # Ensure deterministic behavior
@@ -23,40 +28,30 @@ torch.cuda.manual_seed_all(hash("so runs are repeatable") % 2**32 - 1)
 # Device configuration
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-# remove slow mirror from list of MNIST mirrors
-torchvision.datasets.MNIST.mirrors = [mirror for mirror in torchvision.datasets.MNIST.mirrors
-                                      if not mirror.startswith("http://yann.lecun.com")]
+
+def training_pipeline(model_to_train, epochs=10,  batch_size=12, num_workers=4,
+                      learning_rate=0.001, data_path="./Dog-Breed-classif"):
+
+    # creating dataloaders
+    dataloaders = dogs_dataset_dataloders(data_transforms_complete, batch_size, num_workers, data_path)
+
+    # initializing optimizer and criterion
+    optimizer = optim.SGD(model_to_train.parameters(), lr=learning_rate, momentum=0.9)
+    criterion = nn.CrossEntropyLoss()
+
+    # loading model to device and training
+    model_to_train = model_to_train.to(device)
+    trained_model, hist, losses = train(model_to_train, dataloaders, criterion, optimizer, num_epochs=epochs)
+    model_metrics_plot(hist, losses)
+    return trained_model
 
 
-
-
-def model_pipeline(cfg:dict) -> None:
-    # tell wandb to get started
-    with wandb.init(project="pytorch-demo", config=cfg):
-      # access all HPs through wandb.config, so logging matches execution!
-      config = wandb.config
-
-      # make the model, data, and optimization problem
-      model, train_loader, test_loader, criterion, optimizer = make(config)
-
-      # and use them to train the model
-      train(model, train_loader, criterion, optimizer, config)
-
-      # and test its final performance
-      test(model, test_loader)
-
-    return model
 
 if __name__ == "__main__":
-    wandb.login()
-
-    config = dict(
-        epochs=5,
-        classes=10,
-        kernels=[16, 32],
-        batch_size=128,
-        learning_rate=5e-3,
-        dataset="MNIST",
-        architecture="CNN")
-    model = model_pipeline(config)
+    # Printing working directory
+    print(os.getcwd())
+    # Calling the model ___ from Models.py
+    model, params = initialize_model_regnet_x_16(120)
+    # Training the model
+    training_pipeline(model,epochs=15)
 
