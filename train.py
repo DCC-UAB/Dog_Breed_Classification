@@ -1,7 +1,11 @@
 import torch
+import torch.nn as nn
+import torch.optim as optim
 import time
+from .utils import *
 import copy
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+
 
 def train(model, dataloaders, criterion, optimizer, num_epochs=25):
     """
@@ -17,7 +21,7 @@ def train(model, dataloaders, criterion, optimizer, num_epochs=25):
     ----------
     model : class
         The neural network model to be trained.
-    dataloaders : TYPE
+    dataloaders : dict of DataLoader
         A dictionary containing the data loaders for the training and validation sets.
     criterion : torch.nn
         The loss function used to calculate the loss.
@@ -124,3 +128,57 @@ def train(model, dataloaders, criterion, optimizer, num_epochs=25):
     # load best model weights
     model.load_state_dict(best_model_wts)
     return model, acc_history, losses
+
+
+def training_pipeline(model_to_train, model_name, dataloaders, optimizer, epochs=25,
+                      save_model=False):
+    """
+    Description
+    -----------
+    This function grouped together the different elements needed to execute the model
+    training and trains the model. After the training plots the loss and the
+    accuracy of both the train and the test. To finish returns the trained
+    model.
+    
+    Parameters
+    ----------
+    model_to_train : class
+        The neural network model to be trained.
+    model_name: str
+        The name of the model to train
+    dataloaders : dict of DataLoader
+        A dictionary containing the data loaders for the training and validation sets.
+    optimizer: torch.optim
+        Contains the optimizer for the training.
+    epochs : int, optional
+        Define the number of epochs to train the model. The default is 25.
+    learning_rate : float, optional
+        Defines the learning rate of the optimizer. The default is 0.001.
+    momentum : float, optional
+        Defines the momentum of the optimizer. The default is 0.9.
+    save_model: bool, optional
+        If true saves the best weights of the trained model. The default is False.
+        
+    Returns
+    -------
+    trained_model: class
+        The trained neural network
+
+    """
+
+    # initializing optimizer and criterion
+    optimizer_name = type(optimizer).__name__
+    criterion = nn.CrossEntropyLoss()
+
+    # loading model to device and training
+    model_to_train = model_to_train.to(device)
+    trained_model, hist, losses = train(model_to_train, dataloaders,
+                                        criterion, optimizer, num_epochs=epochs)
+    model_metrics_plot(hist, losses)
+
+    if save_model:
+        path = "./models/"+model_name+"_"+optimizer_name+".pth"
+        torch.save(trained_model.state_dict(), path)
+        print("Model saved at: ", path)
+    
+    return trained_model
