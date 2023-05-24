@@ -9,6 +9,7 @@ The primary objective of the Dog Breed Classifier project is to develop an advan
 
 ## Code structure
 Our code follows the next structure :
+` 
 ├── Data
 │   ├── __init__.py
 │   ├── FolderClassification.py
@@ -38,6 +39,7 @@ Our code follows the next structure :
     |   └── ...
     ├── labels.csv
     └── sample_submission.csv
+`
 ## Example Code
 The given code is a simple CNN example training on the MNIST dataset. It shows how to set up the [Weights & Biases](https://wandb.ai/site)  package to monitor how your network is learning, or not.
 
