@@ -3,9 +3,41 @@
 # XNAP-Project title (replace it by the title of your project)
 Write here a short summary about your project. The text must include a short introduction and the targeted goals
 
-## Code structure
-You must create as many folders as you consider. You can use the proposed structure or replace it by the one in the base code that you use as starting point. Do not forget to add Markdown files as needed to explain well the code and how to use it.
+The Dog Breed Classifier project is a cutting-edge initiative that seeks to harness the power of artificial intelligence in the field of animal identification. By leveraging the latest advancements in machine learning and image recognition, this project aims to identify up to 120 distinct dog breeds through digital images. With an expansive database encompassing the unique physical characteristics of each breed, our AI-powered tool is designed to enhance our understanding of these beloved pets, and aid in their identification.
 
+The primary objective of the Dog Breed Classifier project is to develop an advanced machine learning model capable of identifying up to 120 different dog breeds from images. This will involve rigorous training of the model using a vast and diverse dataset to ensure high levels of accuracy and precision, considering the wide variations in size, color, and angle of image capture across different dog breeds. But this project isn't just about the creation of an AI model, it extends to the development of an user-friendly web application that allows users to upload images of dogs and receive instant information about their breed.
+
+## Code structure
+Our code follows the next structure :
+├── Data
+│   ├── __init__.py
+│   ├── FolderClassification.py
+│   └── ImageExamples.py
+├── models
+│   ├── __init__.py
+│   ├── model1.py
+│   ├── model2.py
+│   └── model3.py
+├── utils
+│   ├── __init__.py
+│   ├── DataLoader.py
+│   ├── Transformations.py
+│   └── utils.py
+└── Dog-Breed-classif
+    ├── test
+    │   ├── affenpinscher
+    │   │   └── ...jpg
+    │   ├── afghan_hound
+    │   |   └── ..jpg
+    |   └── ...
+    ├── train
+    │   ├── affenpinscher
+    │   │   └── ...jpg
+    │   ├── afghan_hound
+    │   |   └── ..jpg
+    |   └── ...
+    ├── labels.csv
+    └── sample_submission.csv
 ## Example Code
 The given code is a simple CNN example training on the MNIST dataset. It shows how to set up the [Weights & Biases](https://wandb.ai/site)  package to monitor how your network is learning, or not.
 
@@ -19,11 +51,12 @@ To run the example code:
 python main.py
 ```
 
-
-
 ## Contributors
-Write here the name and UAB mail of the group members
+Here are the names and UAB mails of each group member:
+- Biel González, agirzel@gmail.com
+- Cristina Soler, csolerare@gmail.com
+- Sofia Di Capua, sofiadicapua29@gmail.com
+
 
 Xarxes Neuronals i Aprenentatge Profund
-Grau de __Write here the name of your estudies (Artificial Intelligence, Data Engineering or Computational Mathematics & Data analyitics)__, 
-UAB, 2023
+__Computational Mathematics & Data analyitics__ degree, UAB, 2023
