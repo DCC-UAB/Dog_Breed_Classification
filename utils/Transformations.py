@@ -1,3 +1,4 @@
+# Imports
 from torchvision import transforms
 
 #Global variables
@@ -53,7 +54,7 @@ data_transforms_gray_scale = {
     ]),
 }
 
-#Transformation 3 (Complete one)
+#Transformation 3 (Complete)
 data_transforms_complete = {
     'train': transforms.Compose([
         transforms.Resize(input_size),
