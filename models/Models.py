@@ -7,6 +7,7 @@
 
 
 import torch.nn as nn
+import torchvision.models as models
 from keras.models import Model
 from keras.layers import BatchNormalization, Dense, GlobalAveragePooling2D, Lambda, Dropout, InputLayer, Input
 from keras.applications.inception_v3 import InceptionV3, preprocess_input
@@ -15,12 +16,16 @@ from keras.applications.inception_resnet_v2 import InceptionResNetV2, preprocess
 from keras.models import Sequential
 from keras.applications import xception
 
+def set_parameter_requires_grad(model, feature_extracting):
+    if feature_extracting:
+        for param in model.parameters():
+            param.requires_grad = False
 
 def initialize_model_regnet_x_16(num_classes):
     # Resnet18
     model = torchvision.models.regnet_x_16gf(pretrained=True)
     set_parameter_requires_grad(model, True)
-    model.fc = nn.Linear(2048, num_classes
+    model.fc = nn.Linear(2048, num_classes)
     input_size = 224
 
     return model, input_size
@@ -94,83 +99,46 @@ class Net(nn.Module):
         input_size = 224
         return x, input_size
 
-# Use resnet-50 as a base model
-class ResNet50(torch.nn.Module):
-    def __init__(self, base_model, base_out_features, num_classes):
-        super(net,self).__init__()
-        self.base_model=base_model
-        self.linear1 = torch.nn.Linear(base_out_features, 512)
-        self.output = torch.nn.Linear(512,num_classes)
-    def forward(self,x):
-        x = F.relu(self.base_model(x))
-        x = F.relu(self.linear1(x))
-        x = self.output(x)
-        return x
-
-
 
 class XV3V2N(nn.Module):
 
     def __init__(self):
         super(XV3V2N, self).__init__()
+        self.base_model_1 = models.alexnet(weights='DEFAULT')
+        self.base_model_2 = models.inception_v3(weights='DEFAULT')
+        self.base_model_3 = models.resnext50_32x4d(weights='DEFAULT')
+        self.base_model_5 = models.mnasnet1_0(weights='DEFAULT')
 
-        self.base_model_1 = xception.Xception(weights='imagenet', include_top=False,
-                                              input_shape=(IMG_HEIGHT, IMG_WIDTH, 3))
+        self.base_model_1.fc = nn.Identity()
+        self.base_model_2.fc = nn.Identity()
+        self.base_model_3.fc = nn.Identity()
+        self.base_model_5.fc = nn.Identity()
 
-        self.base_model_2 = inception_v3.InceptionV3(weights='imagenet', include_top=False,
-                                                     input_shape=(IMG_HEIGHT, IMG_WIDTH, 3))
+        self.pool = nn.AdaptiveAvgPool2d(1)
+        self.dropout = nn.Dropout(0.7)
+        self.fc = nn.Linear(2688, 120)
 
-        self.base_model_3 = inception_resnet_v2.InceptionResNetV2(weights='imagenet', include_top=False,
-                                                                  input_shape=(IMG_HEIGHT, IMG_WIDTH, 3))
-
-        # base_model_4 = resnet_v2.ResNet152V2(weights='imagenet', include_top=False, input_shape=(IMG_HEIGHT, IMG_WIDTH,3))
-
-        self.base_model_5 = nasnet.NASNetLarge(weights='imagenet', include_top=False,
-                                               input_shape=(IMG_HEIGHT, IMG_WIDTH, 3))
-
-        # train only the top layers (which were randomly initialized)
-        # i.e. freeze all convolutional Xception layers
-        self.base_model_1.trainable = False
-        self.base_model_2.trainable = False
-        self.base_model_3.trainable = False
-        # base_model_4.trainable = False
-        self.base_model_5.trainable = False
 
     def forward(self, inputs):
         ## <-----  Xception   -----> ##
-        x1 = xception.preprocess_input(inputs)
-        # The base model contains batchnorm layers. We want to keep them in inference mode
-        # when we unfreeze the base model for fine-tuning, so we make sure that the
-        # base_model is running in inference mode here by passing `training=False`.
-        x1 = self.base_model_1(x1, training=False)
-        x1 = GlobalAveragePooling2D()(x1)
-
+        x1 = self.base_model_1(inputs)
         ## <-----  InceptionV3   -----> ##
-        x2 = inception_v3.preprocess_input(inputs)
-        x2 = self.base_model_2(x2, training=False)
-        x2 = GlobalAveragePooling2D()(x2)
-
+        x2 = self.base_model_2(inputs)
         ## <-----  InceptionResNetV2   -----> ##
-        x3 = inception_resnet_v2.preprocess_input(inputs)
-        x3 = self.base_model_3(x3, training=False)
-        x3 = GlobalAveragePooling2D()(x3)
-
-        ## <-----  ResNet152V2   -----> ##
-        # x4 = resnet_v2.preprocess_input(aug_inputs)
-        # x4 = base_model_4(x4, training=False)
-        # x4 = GlobalAveragePooling2D()(x4)
-
+        x3 = self.base_model_3(inputs)
         ## <-----  NASNetLarge   -----> ##
-        x5 = nasnet.preprocess_input(inputs)
-        x5 = self.base_model_5(x5, training=False)
-        x5 = GlobalAveragePooling2D()(x5)
+        x5 = self.base_model_5(inputs)
 
-        ## <-----  Concatenation  -----> ##
-        x = Concatenate()([x1, x2, x3, x5])
-        x = Dropout(.7)(x)
-        outputs = Dense(120, activation='softmax')(x)
-        input_size = 224
-        return outputs, input_size
+        x1 = self.pool(x1).view(x1.size(0), -1)
+        x2 = self.pool(x2).view(x2.size(0), -1)
+        x3 = self.pool(x3).view(x3.size(0), -1)
+        x5 = self.pool(x5).view(x5.size(0), -1)
+
+        x = torch.cat([x1, x2, x3, x5], dim=1)
+        x = self.dropout(x)
+        outputs = self.fc(x)
+
+        return outputs
 
 
 # https://www.kaggle.com/code/khanrahim/dog-breed
@@ -183,7 +151,7 @@ class XV3V2N(nn.Module):
 class ConcatIXIRN(nn.Module):
 
     def __init__(self):
-        super(XV3V2N, self).__init__()
+        super(ConcatIXIRN, self).__init__()
 
     def get_features(self, model_name, data_preprocessor, input_size, data):
         # Function to extract features from images
@@ -243,8 +211,4 @@ class ConcatIXIRN(nn.Module):
 #
 # Val_accuracy = 98 %
 
-# In[15]:
-
-
-
-
+#
