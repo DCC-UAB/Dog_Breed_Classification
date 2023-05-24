@@ -1,5 +1,8 @@
+# Imports
 import matplotlib.pyplot as plt
-
+"""
+This code is used to make a visual analysis of the models by ploting the loss and acurracy of the training and validation sets.
+"""
 def model_metrics_plot(acc_history, losses):
     fig, axs = plt.subplots(1, 2, figsize=(16, 6))
     plt.suptitle("Metrics evolution during model training")
