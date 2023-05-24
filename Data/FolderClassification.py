@@ -1,8 +1,16 @@
+# Imports
 import os
 import sys
 import shutil
 import pandas as pd
 
+"""
+The provided code functions to classify images into directories according to their breed. If a directory corresponding 
+to a breed already exists, the code refrains from creating a new one; however, if there is no existing directory for a 
+certain breed, it automatically generates one. 
+"""
+
+# Checking of we are in the correct directory, if don't please go where labels and train are accesible
 print("Input the path to the dataset images (Current working directory:", os.getcwd(), ")")
 path = input()
 path_labels = path+'/labels.csv'
