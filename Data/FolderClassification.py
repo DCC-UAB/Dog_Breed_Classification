@@ -10,7 +10,7 @@ to a breed already exists, the code refrains from creating a new one; however, i
 certain breed, it automatically generates one. 
 """
 
-# Checking of we are in the correct directory, if don't please go where labels and train are accesible
+# Checking if we are in the correct directory, if don't please go where labels and train are accesible
 print("Input the path to the dataset images (Current working directory:", os.getcwd(), ")")
 path = input()
 path_labels = path+'/labels.csv'
