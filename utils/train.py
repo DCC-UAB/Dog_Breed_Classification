@@ -1,3 +1,4 @@
+# Imports
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -6,6 +7,9 @@ from .utils import *
 import copy
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
+"""
+This function is used in the menu, which is called in the main.py. Its a general call for all the models we have made.
+"""
 
 def train(model, dataloaders, criterion, optimizer, num_epochs=25):
     """
