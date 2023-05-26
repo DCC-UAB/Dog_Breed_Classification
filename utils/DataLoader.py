@@ -1,42 +1,62 @@
-# Imports
 import random
 import torch
 import torchvision
 import pandas as pd
 
-"""
-This Python code defines a custom Dataset class in PyTorch and a function to load, process, and split a dataset of dog images into 
-training, validation, and test sets. It also creates PyTorch dataloaders for each of these sets, which are used to efficiently 
-load the data during training of a neural network. The function uses CUDA for better performance if available.
-"""
 
-# Definition of a custom dataset class
 class MyDataset(torch.utils.data.Dataset):
     def __init__(self, subset, transform=None):
-        self.subset = subset  # Subset of data
-        self.transform = transform  # Data augmentation/transformations
+        self.subset = subset
+        self.transform = transform
 
     def __getitem__(self, index):
-        x, y = self.subset[index]  # Get an item by index
-        if self.transform:  # If any transformations were passed
-            x = self.transform(x)  # Apply transformations
+        x, y = self.subset[index]
+        if self.transform:
+            x = self.transform(x)
         return x, y
 
     def __len__(self):
-        return len(self.subset)  # Return the length of subset
+        return len(self.subset)
 
-# Function to load data and return dataloaders for each data subset
-def dogs_dataset_dataloders(transformer, batch_size, num_workers, dataset_path, shuffle=True):
 
-    # Use CUDA if available for performance enhancement
+def dogs_dataset_dataloders(transformer, dataset_path, batch_size=12,
+                            num_workers=4, shuffle=True):
+    """
+    Description
+    -----------
+    Generates a dictionary with three dataloaders: train, val and test.
+    Parameters
+    ----------
+    transformer : dict of torchvision.transforms.compose
+        Contains the transformations to apply on the data loaded by the
+        dataloaders
+    dataset_path : str
+        Contains the relative or absolute path to the folder with the images
+        and the labels of the kaggle.
+    batch_size : int, optional
+        How many samples per batch to load. The default is 12.
+    num_workers : int, optional
+        how many subprocesses to use for data loading, 0 means that the data
+        will be loaded in the main process. The default is 4.
+    shuffle : bool, optional
+        If true the dataloaders shuffle the data they have. The default is true.
+
+    Returns
+    -------
+    dataloaders_dict: dict of dataloader
+        Contains the tree dataloaders for each step of the training, validation
+        and test of a neural network.
+
+    """
+    #activate cuda for performance enhacement
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     print("Using: ", device)
 
-    # Load data
+    #loading data
     dataset = torchvision.datasets.ImageFolder(dataset_path+'/train')
     labels = pd.read_csv(dataset_path+'/labels.csv')
 
-    # Split data into training, validation and testing subsets
+    # splitting data
     dataset_len = labels.shape[0]
     indexes = list(range(dataset_len))
     random.shuffle(indexes)
@@ -50,7 +70,7 @@ def dogs_dataset_dataloders(transformer, batch_size, num_workers, dataset_path, 
     test_subset = torch.utils.data.Subset(dataset, test_indexes)
     test_dataset = MyDataset(test_subset, transform=transformer["test"])
 
-    # Create dataloaders for each subset
+    #creating dataloaders
     dataloaders_dict = {"train": torch.utils.data.DataLoader(train_dataset, batch_size=batch_size,
                                                              shuffle=shuffle, num_workers=num_workers),
                         "val": torch.utils.data.DataLoader(validation_dataset, batch_size=batch_size,
