@@ -27,7 +27,7 @@ def test(model, dataloader):
     return predictions, accuracy
 
 
-def test_on_fold(model, test_loader, pre_trained, model_name="", optimizer_name="", load_weights=False):
+def test_on_fold(model, test_loader, model_name="", optimizer_name="", load_weights=False):
     if load_weights:
         path = "./models/"+model_name+"_"+optimizer_name+".pth"
         model.load_state_dict(torch.load(path, device))
