@@ -3,12 +3,17 @@ from .test import *
 from models.models import *
 import sys
 
+
 def menu (dataloaders):
     print("#############################\n"
           "\tDog Breed Classifier\n"
           "#############################")
     print("Please input a mode:\n- Only train: 1\n- Only test: 2\n- Train and Test: 3\n")
     mode = int(input())
+    if mode not in [1, 2, 3]:
+        print("Invalid mode, exiting...")
+        sys.exit()
+
     model, params, model_name = select_model()
     optimizer = select_optimizer(model.parameters())
     optimizer_name = type(optimizer).__name__
@@ -16,6 +21,7 @@ def menu (dataloaders):
         print("Input number of epochs:")
         epochs = int(input())
     model = model.to(device)
+
     if mode == 1:
         print("Will you want to save the model weights after training? [y/n]")
         save_model = input()
@@ -31,14 +37,10 @@ def menu (dataloaders):
         print("Will you want to save the metrics plot? [y/n]")
         save_plot = input()
         trained_model = training_pipeline(model, model_name, dataloaders, optimizer,
-                                          epochs, save_plot == "y", save_model=True)
+                                          epochs, save_plot=(save_plot == "y"), save_model=True)
         predictions, accuracy = test_on_fold(trained_model, dataloaders['test'], load_weights=False)
 
         print("Test accuracy:", accuracy)
-
-    else:
-        print("Invalid mode, exiting...")
-        sys.exit()
 
 
 def select_optimizer(parameters):
