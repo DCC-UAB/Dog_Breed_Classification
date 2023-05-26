@@ -30,7 +30,8 @@ def menu (dataloaders):
         trained_model = training_pipeline(model, model_name, dataloaders, optimizer,
                                           epochs, save_model == "y", save_plot == "y")
     elif mode == 2:
-        predictions, accuracy = test_on_fold(model, dataloaders['test'], model_name, optimizer_name)
+        predictions, accuracy = test_on_fold(model, dataloaders['test'], model_name, optimizer_name,
+                                             load_weights=True)
         print("Test accuracy:", accuracy)
 
     elif mode == 3:
