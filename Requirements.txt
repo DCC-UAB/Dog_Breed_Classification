@@ -4,6 +4,8 @@ cv2
 
 rembg
 
+omnixai
+
 En cas de no tenir-los instal·lats, empreu les següents comandes :
 
 !pip install --upgrade pip
@@ -11,3 +13,7 @@ En cas de no tenir-los instal·lats, empreu les següents comandes :
 !pip install opencv-python-headless
 
 !pip install rembg
+
+!pip install omnixai
+
+I la versió més nova de pandas
