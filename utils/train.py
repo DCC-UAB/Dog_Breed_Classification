@@ -1,4 +1,3 @@
-# Imports
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -7,9 +6,6 @@ from .utils import *
 import copy
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-"""
-This function is used in the menu, which is called in the main.py. Its a general call for all the models we have made.
-"""
 
 def train(model, dataloaders, criterion, optimizer, num_epochs=25):
     """
@@ -135,7 +131,7 @@ def train(model, dataloaders, criterion, optimizer, num_epochs=25):
 
 
 def training_pipeline(model_to_train, model_name, dataloaders, optimizer, epochs=25,
-                      save_model=False):
+                      save_model=False, save_plot=False):
     """
     Description
     -----------
@@ -162,6 +158,8 @@ def training_pipeline(model_to_train, model_name, dataloaders, optimizer, epochs
         Defines the momentum of the optimizer. The default is 0.9.
     save_model: bool, optional
         If true saves the best weights of the trained model. The default is False.
+    save_plot: bool, optional
+        If true saves the plotted metrics. The default is False.
         
     Returns
     -------
@@ -178,11 +176,16 @@ def training_pipeline(model_to_train, model_name, dataloaders, optimizer, epochs
     model_to_train = model_to_train.to(device)
     trained_model, hist, losses = train(model_to_train, dataloaders,
                                         criterion, optimizer, num_epochs=epochs)
-    model_metrics_plot(hist, losses)
+
+    plot = model_metrics_plot(hist, losses)
 
     if save_model:
-        path = "./models/"+model_name+"_"+optimizer_name+".pth"
+        path = "./models/" + model_name + "_" + optimizer_name + ".pth"
         torch.save(trained_model.state_dict(), path)
         print("Model saved at: ", path)
-    
+
+    if save_plot:
+        path = "./models/" + model_name + "_" + optimizer_name + ".png"
+        plot.savefig(path)
+        print("Image saved at:", path)
     return trained_model
