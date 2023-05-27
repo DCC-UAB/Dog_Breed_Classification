@@ -1,5 +1,14 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/sPgOnVC9)
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=11103468&assignment_repo_type=AssignmentRepo)
+## Technologies we use
+
+<img src="https://img.shields.io/badge/Kaggle-20BEFF?style=for-the-badge&logo=Kaggle&logoColor=white" /> <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white" />
+<img src="https://img.shields.io/badge/conda-342B029.svg?&style=for-the-badge&logo=anaconda&logoColor=white" />
+<img src="https://img.shields.io/badge/Jupyter-F37626.svg?&style=for-the-badge&logo=Jupyter&logoColor=white" />
+<img src="https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue" />
+<img src="https://img.shields.io/badge/PyCharm-000000.svg?&style=for-the-badge&logo=PyCharm&logoColor=white" /> <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white" /> 
+
+
 # Dog Breed Classifier
 The Dog Breed Classifier project is a cutting-edge initiative that seeks to harness the power of artificial intelligence in the field of animal identification. By leveraging the latest advancements in machine learning and image recognition, this project aims to identify up to 120 distinct dog breeds through digital images. With an expansive database encompassing the unique physical characteristics of each breed, our AI-powered tool is designed to enhance our understanding of these beloved pets, and aid in their identification.
 
@@ -14,32 +23,39 @@ Our code follows the next structure :
 │   └── ImageExamples.py
 ├── models
 │   ├── __init__.py
-│   ├── model1.py
-│   ├── model2.py
-│   └── model3.py
+│   ├── model.py
 ├── utils
 │   ├── __init__.py
 │   ├── DataLoader.py
 │   ├── Transformations.py
+│   ├── test.py
+│   ├── test.py
+│   ├── menu.py
 │   └── utils.py
 └── Dog-Breed-classif
-    ├── test
-    │   ├── affenpinscher
-    │   │   └── ...jpg
-    │   ├── afghan_hound
-    │   |   └── ..jpg
-    |   └── ...
-    ├── train
-    │   ├── affenpinscher
-    │   │   └── ...jpg
-    │   ├── afghan_hound
-    │   |   └── ..jpg
-    |   └── ...
-    └── labels.csv
-   
+│   ├── test
+│   │   ├── affenpinscher
+│   │   │   └── ...jpg
+│   │   ├── afghan_hound
+│   │   |   └── ..jpg
+│   |   └── ...
+│   ├── train
+│   │   ├── affenpinscher
+│   │   │   └── ...jpg
+│   │   ├── afghan_hound
+│   │   |   └── ..jpg
+│   |   └── ...
+│   └── labels.csv
+└── main.py
+├── README.md
+├── LICENSE
+├── enviroment.yml
+└── Demostracio_resultats.ipynb
 ```
 ## Code
-The given code allows us to run the training of the data and its test with several models with the Dog Breed dataset. To run it, we need tho download the github. Before running the code you have to create a local environment with conda and activate it. The provided [environment.yml] file has all the required dependencies. Run the following command: ``conda env create --file environment.yml `` to create a conda environment with all the required dependencies and then activate it:
+The given code allows us to run the training of the data and its test with several models with the Dog Breed dataset. To run it, we need tho download the github. Before running the code you have to create a local environment with conda and activate it. The provided [environment.yml] file has all the required dependencies. 
+
+Run the following command: ``conda env create --file environment.yml `` to create a conda environment with all the required dependencies and then activate it:
 
 ```
 conda activate Dog-breed
@@ -54,11 +70,14 @@ A menu will be displayed per terminal where the user can select which actions to
 
 ## Contributors
 Here are the names and UAB mails of each group member:
+
+- Sofia Di Capua, sofiadicapua29@gmail.com
 - Biel González, agirzel@gmail.com
 - Cristina Soler, csolerare@gmail.com
-- Sofia Di Capua, sofiadicapua29@gmail.com
 
-| [<img src="https://avatars.githubusercontent.com/u/73697639?v=4" width=115><br><sub>Sofia Di Capua</sub>]([https://github.com/SofiaDiCapua](https://github.com/SofiaDiCapua)) |  [<img src="https://avatars.githubusercontent.com/u/81986384?v=4" width=115><br><sub>Biel González</sub>]([https://github.com/Zynokrex](https://github.com/Zynokrex)) |  [<img src="https://github.com/account" width=115><br><sub>Cristina Soler</sub>](https://github.com/kermitsc7) |
+| [<img src="https://avatars.githubusercontent.com/u/73697639?v=4" width=115><br><sub>Sofia Di Capua</sub>](https://github.com/SofiaDiCapua) |  [<img src="https://avatars.githubusercontent.com/u/81986384?v=4" width=115><br><sub>Biel González</sub>](https://github.com/Zynokrex) |  [<img src="https://avatars.githubusercontent.com/u/58566857?v=4" width=115><br><sub>Cristina Soler</sub>](https://github.com/kermitsc7) |
+| :---: | :---: | :---: |
+
 
 Xarxes Neuronals i Aprenentatge Profund
 __Computational Mathematics & Data analyitics__ degree, UAB, 2023
