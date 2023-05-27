@@ -4,7 +4,7 @@ from models.models import *
 import sys
 
 
-def menu (dataloaders):
+def menu(dataloaders):
     print("#############################\n"
           "\tDog Breed Classifier\n"
           "#############################")
@@ -29,10 +29,15 @@ def menu (dataloaders):
         save_plot = input()
         trained_model = training_pipeline(model, model_name, dataloaders, optimizer,
                                           epochs, save_model == "y", save_plot == "y")
+
+        return trained_model
+    
     elif mode == 2:
         predictions, accuracy = test_on_fold(model, dataloaders['test'], model_name=model_name,
                                              optimizer_name=optimizer_name, load_weights=True)
         print("Test accuracy:", accuracy)
+
+        return predictions, accuracy
 
     elif mode == 3:
         print("Will you want to save the metrics plot? [y/n]")
@@ -42,6 +47,8 @@ def menu (dataloaders):
         predictions, accuracy = test_on_fold(trained_model, dataloaders['test'], load_weights=False)
 
         print("Test accuracy:", accuracy)
+
+        return predictions, accuracy
 
 
 def select_optimizer(parameters):
