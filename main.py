@@ -1,4 +1,3 @@
-# Imports
 import os
 import random
 import torch
@@ -30,10 +29,7 @@ torch.cuda.manual_seed_all(hash("so runs are repeatable") % 2**32 - 1)
 # Device configuration
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-"""
-In the following code the dataloaders are called and a menu is displayed, it is though for CUDA-enabled GPUs.
-The menu provides an user-friendly way to execute different models from scratch.
-"""
+
 if __name__ == "__main__":
     torch.cuda.empty_cache()
     batch_size = 12
@@ -41,4 +37,4 @@ if __name__ == "__main__":
     data_path = "./Dog-Breed-classif"
     dataloaders = dogs_dataset_dataloders(data_transforms_complete, data_path,
                                           batch_size, num_workers)
-    menu(dataloaders)
+    returned_objects = menu(dataloaders)
