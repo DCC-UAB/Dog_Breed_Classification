@@ -28,7 +28,7 @@ Our code follows the next structure :
 │   ├── __init__.py
 │   ├── DataLoader.py
 │   ├── Transformations.py
-│   ├── test.py
+│   ├── train.py
 │   ├── test.py
 │   ├── menu.py
 │   └── utils.py
