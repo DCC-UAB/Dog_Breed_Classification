@@ -1,29 +1,64 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/sPgOnVC9)
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=11103468&assignment_repo_type=AssignmentRepo)
-# XNAP-Project title (replace it by the title of your project)
-Write here a short summary about your project. The text must include a short introduction and the targeted goals
+# Dog Breed Classifier
+The Dog Breed Classifier project is a cutting-edge initiative that seeks to harness the power of artificial intelligence in the field of animal identification. By leveraging the latest advancements in machine learning and image recognition, this project aims to identify up to 120 distinct dog breeds through digital images. With an expansive database encompassing the unique physical characteristics of each breed, our AI-powered tool is designed to enhance our understanding of these beloved pets, and aid in their identification.
+
+The primary objective of the Dog Breed Classifier project is to develop an advanced machine learning model capable of identifying up to 120 different dog breeds from images. This will involve rigorous training of the model using a vast and diverse dataset to ensure high levels of accuracy and precision, considering the wide variations in size, color, and angle of image capture across different dog breeds. But this project isn't just about the creation of an AI model, it extends to the development of an user-friendly web application that allows users to upload images of dogs and receive instant information about their breed.
 
 ## Code structure
-You must create as many folders as you consider. You can use the proposed structure or replace it by the one in the base code that you use as starting point. Do not forget to add Markdown files as needed to explain well the code and how to use it.
-
-## Example Code
-The given code is a simple CNN example training on the MNIST dataset. It shows how to set up the [Weights & Biases](https://wandb.ai/site)  package to monitor how your network is learning, or not.
-
-Before running the code you have to create a local environment with conda and activate it. The provided [environment.yml](https://github.com/DCC-UAB/XNAP-Project/environment.yml) file has all the required dependencies. Run the following command: ``conda env create --file environment.yml `` to create a conda environment with all the required dependencies and then activate it:
+Our code follows the next structure :
+```bash
+├── Data
+│   ├── __init__.py
+│   ├── FolderClassification.py
+│   └── ImageExamples.py
+├── models
+│   ├── __init__.py
+│   ├── model1.py
+│   ├── model2.py
+│   └── model3.py
+├── utils
+│   ├── __init__.py
+│   ├── DataLoader.py
+│   ├── Transformations.py
+│   └── utils.py
+└── Dog-Breed-classif
+    ├── test
+    │   ├── affenpinscher
+    │   │   └── ...jpg
+    │   ├── afghan_hound
+    │   |   └── ..jpg
+    |   └── ...
+    ├── train
+    │   ├── affenpinscher
+    │   │   └── ...jpg
+    │   ├── afghan_hound
+    │   |   └── ..jpg
+    |   └── ...
+    └── labels.csv
+   
 ```
-conda activate xnap-example
+## Code
+The given code allows us to run the training of the data and its test with several models with the Dog Breed dataset. To run it, we need tho download the github. Before running the code you have to create a local environment with conda and activate it. The provided [environment.yml] file has all the required dependencies. Run the following command: ``conda env create --file environment.yml `` to create a conda environment with all the required dependencies and then activate it:
+
+```
+conda activate Dog-breed
 ```
 
-To run the example code:
+To run the main code:
 ```
 python main.py
 ```
-
+A menu will be displayed per terminal where the user can select which actions to take. It is recommended that the first time it is used, the model is trained to be able to take the test later. The menu will also give us the option to save the weights at the end of the training and see the graphs of the metrics to assess if the training has been good. The test value will take some weights saved from a training and show us the accuracy obtained with the test dataset part. Finally, we are also given the option of train + test which brings the two things together.
 
 
 ## Contributors
-Write here the name and UAB mail of the group members
+Here are the names and UAB mails of each group member:
+- Biel González, agirzel@gmail.com
+- Cristina Soler, csolerare@gmail.com
+- Sofia Di Capua, sofiadicapua29@gmail.com
+
+| [<img src="https://avatars.githubusercontent.com/u/73697639?v=4" width=115><br><sub>Sofia Di Capua</sub>]([https://github.com/SofiaDiCapua](https://github.com/SofiaDiCapua)) |  [<img src="https://avatars.githubusercontent.com/u/81986384?v=4" width=115><br><sub>Biel González</sub>]([https://github.com/Zynokrex](https://github.com/Zynokrex)) |  [<img src="https://github.com/account" width=115><br><sub>Cristina Soler</sub>](https://github.com/kermitsc7) |
 
 Xarxes Neuronals i Aprenentatge Profund
-Grau de __Write here the name of your estudies (Artificial Intelligence, Data Engineering or Computational Mathematics & Data analyitics)__, 
-UAB, 2023
+__Computational Mathematics & Data analyitics__ degree, UAB, 2023
