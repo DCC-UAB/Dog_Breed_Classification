@@ -31,7 +31,7 @@ def menu(dataloaders):
                                           epochs, save_model == "y", save_plot == "y")
 
         return trained_model
-    
+
     elif mode == 2:
         predictions, accuracy = test_on_fold(model, dataloaders['test'], model_name=model_name,
                                              optimizer_name=optimizer_name, load_weights=True)

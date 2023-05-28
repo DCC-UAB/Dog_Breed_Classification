@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-
+from models.models import *
 
 def model_metrics_plot(acc_history, losses):
     fig, axs = plt.subplots(1, 2, figsize=(16, 6))
@@ -17,3 +17,4 @@ def model_metrics_plot(acc_history, losses):
     plt.show()
 
     return fig
+

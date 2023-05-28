@@ -48,13 +48,13 @@ def dogs_dataset_dataloders(transformer, dataset_path, batch_size=12,
         and test of a neural network.
 
     """
-    #activate cuda for performance enhacement
+    # activate cuda for performance enhacement
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     print("Using: ", device)
 
-    #loading data
-    dataset = torchvision.datasets.ImageFolder(dataset_path+'/train')
-    labels = pd.read_csv(dataset_path+'/labels.csv')
+    # loading data
+    dataset = torchvision.datasets.ImageFolder(dataset_path + '/train')
+    labels = pd.read_csv(dataset_path + '/labels.csv')
 
     # splitting data
     dataset_len = labels.shape[0]
@@ -62,7 +62,7 @@ def dogs_dataset_dataloders(transformer, dataset_path, batch_size=12,
     random.shuffle(indexes)
     train_indexes = indexes[0:int(dataset_len * 0.6)]
     validation_indexes = indexes[int(dataset_len * 0.6) + 1: int(dataset_len * 0.9)]
-    test_indexes = indexes[int(dataset_len * 0.9) + 1: (dataset_len-1)]
+    test_indexes = indexes[int(dataset_len * 0.9) + 1: (dataset_len - 1)]
     train_subset = torch.utils.data.Subset(dataset, train_indexes)
     train_dataset = MyDataset(train_subset, transform=transformer["train"])
     validation_subset = torch.utils.data.Subset(dataset, validation_indexes)
@@ -70,7 +70,7 @@ def dogs_dataset_dataloders(transformer, dataset_path, batch_size=12,
     test_subset = torch.utils.data.Subset(dataset, test_indexes)
     test_dataset = MyDataset(test_subset, transform=transformer["test"])
 
-    #creating dataloaders
+    # creating dataloaders
     dataloaders_dict = {"train": torch.utils.data.DataLoader(train_dataset, batch_size=batch_size,
                                                              shuffle=shuffle, num_workers=num_workers),
                         "val": torch.utils.data.DataLoader(validation_dataset, batch_size=batch_size,
