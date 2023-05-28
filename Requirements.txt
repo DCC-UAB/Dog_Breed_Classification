@@ -4,7 +4,7 @@ cv2
 
 rembg
 
-omnixai
+pytorch_grad_cam
 
 En cas de no tenir-los instal·lats, empreu les següents comandes :
 
@@ -14,6 +14,6 @@ En cas de no tenir-los instal·lats, empreu les següents comandes :
 
 !pip install rembg
 
-!pip install omnixai
+!pip install pytorch_gradcam
 
 I la versió més nova de pandas
