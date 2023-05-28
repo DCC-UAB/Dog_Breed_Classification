@@ -48,6 +48,7 @@ def dogs_dataset_dataloders(transformer, dataset_path, batch_size=12,
         and test of a neural network.
 
     """
+
     # activate cuda for performance enhacement
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     print("Using: ", device)
@@ -70,7 +71,8 @@ def dogs_dataset_dataloders(transformer, dataset_path, batch_size=12,
     test_subset = torch.utils.data.Subset(dataset, test_indexes)
     test_dataset = MyDataset(test_subset, transform=transformer["test"])
 
-    # creating dataloaders
+
+    #creating dataloaders
     dataloaders_dict = {"train": torch.utils.data.DataLoader(train_dataset, batch_size=batch_size,
                                                              shuffle=shuffle, num_workers=num_workers),
                         "val": torch.utils.data.DataLoader(validation_dataset, batch_size=batch_size,

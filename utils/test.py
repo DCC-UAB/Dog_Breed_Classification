@@ -34,4 +34,6 @@ def test_on_fold(model, test_loader, model_name="", optimizer_name="", load_weig
 
     predictions, accuracy = test(model, test_loader)
     
+
     return predictions, accuracy
+

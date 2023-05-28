@@ -14,6 +14,10 @@ The Dog Breed Classifier project is a cutting-edge initiative that seeks to harn
 
 The primary objective of the Dog Breed Classifier project is to develop an advanced machine learning model capable of identifying up to 120 different dog breeds from images. This will involve rigorous training of the model using a vast and diverse dataset to ensure high levels of accuracy and precision, considering the wide variations in size, color, and angle of image capture across different dog breeds. But this project isn't just about the creation of an AI model, it extends to the development of an user-friendly web application that allows users to upload images of dogs and receive instant information about their breed.
 
+The Dog Breed Classifier project is a cutting-edge initiative that seeks to harness the power of artificial intelligence in the field of animal identification. By leveraging the latest advancements in machine learning and image recognition, this project aims to identify up to 120 distinct dog breeds through digital images. With an expansive database encompassing the unique physical characteristics of each breed, our AI-powered tool is designed to enhance our understanding of these beloved pets, and aid in their identification.
+
+The primary objective of the Dog Breed Classifier project is to develop an advanced machine learning model capable of identifying up to 120 different dog breeds from images. This will involve rigorous training of the model using a vast and diverse dataset to ensure high levels of accuracy and precision, considering the wide variations in size, color, and angle of image capture across different dog breeds. But this project isn't just about the creation of an AI model, it extends to the development of an user-friendly web application that allows users to upload images of dogs and receive instant information about their breed.
+
 ## Code structure
 Our code follows the next structure :
 ```bash
@@ -52,6 +56,12 @@ Our code follows the next structure :
 ├── enviroment.yml
 └── Demostracio_resultats.ipynb
 ```
+## Example Code
+The given code is a simple CNN example training on the MNIST dataset. It shows how to set up the [Weights & Biases](https://wandb.ai/site)  package to monitor how your network is learning, or not.
+
+Before running the code you have to create a local environment with conda and activate it. The provided [environment.yml](https://github.com/DCC-UAB/XNAP-Project/environment.yml) file has all the required dependencies. Run the following command: ``conda env create --file environment.yml `` to create a conda environment with all the required dependencies and then activate it:
+
+
 ## Code
 The given code allows us to run the training of the data and its test with several models with the Dog Breed dataset. To run it, we need tho download the github. Before running the code you have to create a local environment with conda and activate it. The provided [environment.yml] file has all the required dependencies. 
 
@@ -65,6 +75,7 @@ To run the main code:
 ```
 python main.py
 ```
+
 A menu will be displayed per terminal where the user can select which actions to take. It is recommended that the first time it is used, the model is trained to be able to take the test later. The menu will also give us the option to save the weights at the end of the training and see the graphs of the metrics to assess if the training has been good. The test value will take some weights saved from a training and show us the accuracy obtained with the test dataset part. Finally, we are also given the option of train + test which brings the two things together.
 
 
