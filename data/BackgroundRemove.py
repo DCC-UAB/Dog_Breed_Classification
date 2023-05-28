@@ -4,6 +4,9 @@ import os
 import sys
 import pandas as pd
 
+"""
+Aquest codi només funciona al Google Colaboratory i donat que les imatges sense fons resulten en un pitjor entrenament no cal executar aquest codi
+"""
 
 labels = pd.read_csv("../Dog-Breed-classif/labels.csv")
 
