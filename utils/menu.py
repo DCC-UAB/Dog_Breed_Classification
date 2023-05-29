@@ -5,6 +5,24 @@ import sys
 
 
 def menu(dataloaders):
+    """
+    Description
+    -----------
+    This function is used as a way facilitate the navigation through the different phases of training and testing
+    with some implemented models and optimizers in our project.
+    
+    Parameters
+    ----------
+    dataloaders: dictionary of torch.utils.data.DataLoader
+        Contains the dataloaders for the three phases of the menu. Train, validation and test.
+    Returns
+    -------
+    trained_model: class
+        Contains the trained model
+    predictions, accuracy: Pandas.DataFrame, float
+        Contains the predictions done by our model during the testing phase and the accuracy of the test.
+    """
+    
     print("#############################\n"
           "\tDog Breed Classifier\n"
           "#############################")
@@ -40,10 +58,12 @@ def menu(dataloaders):
         return predictions, accuracy
 
     elif mode == 3:
+        print("Will you want to save the model weights after training? [y/n]")
+        save_model = input()
         print("Will you want to save the metrics plot? [y/n]")
         save_plot = input()
         trained_model = training_pipeline(model, model_name, dataloaders, optimizer,
-                                          epochs, save_plot=(save_plot == "y"), save_model=False)
+                                          epochs, save_model == "y", save_plot == "y")
         predictions, accuracy = test_on_fold(trained_model, dataloaders['test'], load_weights=False)
 
         print("Test accuracy:", accuracy)
@@ -52,6 +72,22 @@ def menu(dataloaders):
 
 
 def select_optimizer(parameters):
+    """
+    Description
+    -----------
+    This function is used as a way facilitate the initialization of the implemented optimizer that is going to be
+    used during the training.
+    
+    Parameters
+    ----------
+    parameters: iterator [torch.nn.parameter.Parameter]
+        Iterator that contains the parameters of the model for the optimizer initialization.
+    Returns
+    -------
+    optimizer: torch.optim
+        The optimizer initializated with the desired parameters
+    """
+        
     optimizer = None
     optimizers = ["SGD", "Adam", "RMSprop"]
 
@@ -86,6 +122,22 @@ def select_optimizer(parameters):
 
 
 def select_model():
+    """
+    Description
+    -----------
+    This function is used as a way facilitate the initialization of the implemented model that is going to be
+    used during the training or testing.
+    
+    Parameters
+    ----------
+    None.
+    
+    Returns
+    -------
+    model: class
+        The model initializated with the desired parameters
+    """
+        
     model = None
     feat_extraction = "n"
     num_classes = 120
