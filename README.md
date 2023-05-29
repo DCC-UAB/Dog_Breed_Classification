@@ -71,7 +71,7 @@ conda env create -f environment.yml
 ```
 conda activate DogBreed
 ```
-## Before the main code
+### Before the main code
 You have to download the kaggle folders and unzip them on a folder called `Dog-Breed-classif` so you have the following estructure:
 ```bash
 Dog-Breed-classif
@@ -89,7 +89,7 @@ python main.py
 
 A menu will be displayed at the terminal where the user can select which actions to take. It is recommended that the first time it is used a model is trained to be able to take the test later. The menu will also give us the option to save the weights at the end of the training and save the graphs of the metrics to have acces at any desired moment to the results of the training. The test option will take the selected weights saved from a previous training and show us the accuracy obtained with the test dataset part. Finally, we are also given the option of train and test which brings the two things together.
 
-Considerations to have:
+### Considerations to have:
 
 The weight loading in the only test option of the menu needs to open the saved weigths of the selected model in the folder `.\models`. So if the original model is a pretrained one we have to select "y" when the menu asks us if we want it to be pretrained, the feature extraction option has no impact because then we will load our saved weights. Also in the part of the optimizer it is only to take the optimizer's name so the different parameters selected during this specific part of the menu will have no impact on the test we will do to our model. This redundant option selection it is due a lack of time.
 
