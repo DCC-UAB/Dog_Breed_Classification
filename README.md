@@ -14,10 +14,6 @@ The Dog Breed Classifier project is a cutting-edge initiative that seeks to harn
 
 The primary objective of the Dog Breed Classifier project is to develop an advanced machine learning model capable of identifying up to 120 different dog breeds from images. This will involve rigorous training of the model using a vast and diverse dataset to ensure high levels of accuracy and precision, considering the wide variations in size, color, and angle of image capture across different dog breeds. But this project isn't just about the creation of an AI model, it extends to the development of an user-friendly web application that allows users to upload images of dogs and receive instant information about their breed.
 
-The Dog Breed Classifier project is a cutting-edge initiative that seeks to harness the power of artificial intelligence in the field of animal identification. By leveraging the latest advancements in machine learning and image recognition, this project aims to identify up to 120 distinct dog breeds through digital images. With an expansive database encompassing the unique physical characteristics of each breed, our AI-powered tool is designed to enhance our understanding of these beloved pets, and aid in their identification.
-
-The primary objective of the Dog Breed Classifier project is to develop an advanced machine learning model capable of identifying up to 120 different dog breeds from images. This will involve rigorous training of the model using a vast and diverse dataset to ensure high levels of accuracy and precision, considering the wide variations in size, color, and angle of image capture across different dog breeds. But this project isn't just about the creation of an AI model, it extends to the development of an user-friendly web application that allows users to upload images of dogs and receive instant information about their breed.
-
 ## Code structure
 Our code follows the next structure :
 ```bash
