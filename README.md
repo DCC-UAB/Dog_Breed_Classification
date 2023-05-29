@@ -72,7 +72,11 @@ To run the main code:
 python main.py
 ```
 
-A menu will be displayed per terminal where the user can select which actions to take. It is recommended that the first time it is used, the model is trained to be able to take the test later. The menu will also give us the option to save the weights at the end of the training and see the graphs of the metrics to assess if the training has been good. The test value will take some weights saved from a training and show us the accuracy obtained with the test dataset part. Finally, we are also given the option of train + test which brings the two things together.
+A menu will be displayed per terminal where the user can select which actions to take. It is recommended that the first time it is used, the model is trained to be able to take the test later. The menu will also give us the option to save the weights at the end of the training and see the graphs of the metrics to assess if the training has been good. The test value will take some weights saved from a training and show us the accuracy obtained with the test dataset part. Finally, we are also given the option of train and test which brings the two things together.
+
+Considerations to have:
+
+The weight loading in the only test option of the menu needs to open the saved weigths of the selected model in the folder `.\models`. So if the original model is a pretrained one we have to select "y" when the menu asks us if we want it to be pretrained, the feature extraction option has no impact because then we will load our saved weights. Also in the part of the optimizer it is only to take the optimizer's name so the different parameters selected during this specific part of the menu will have no impact on the test we will do to our model. This redundant option selection it is due a lack of time.
 
 
 ## Contributors
