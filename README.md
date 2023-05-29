@@ -72,7 +72,7 @@ To run the main code:
 python main.py
 ```
 
-A menu will be displayed per terminal where the user can select which actions to take. It is recommended that the first time it is used, the model is trained to be able to take the test later. The menu will also give us the option to save the weights at the end of the training and see the graphs of the metrics to assess if the training has been good. The test value will take some weights saved from a training and show us the accuracy obtained with the test dataset part. Finally, we are also given the option of train and test which brings the two things together.
+A menu will be displayed at the terminal where the user can select which actions to take. It is recommended that the first time it is used a model is trained to be able to take the test later. The menu will also give us the option to save the weights at the end of the training and save the graphs of the metrics to have acces at any desired moment to the results of the training. The test option will take the selected weights saved from a previous training and show us the accuracy obtained with the test dataset part. Finally, we are also given the option of train and test which brings the two things together.
 
 Considerations to have:
 
