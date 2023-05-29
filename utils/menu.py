@@ -43,7 +43,7 @@ def menu(dataloaders):
         print("Will you want to save the metrics plot? [y/n]")
         save_plot = input()
         trained_model = training_pipeline(model, model_name, dataloaders, optimizer,
-                                          epochs, save_plot=(save_plot == "y"), save_model=True)
+                                          epochs, save_plot=(save_plot == "y"), save_model=False)
         predictions, accuracy = test_on_fold(trained_model, dataloaders['test'], load_weights=False)
 
         print("Test accuracy:", accuracy)

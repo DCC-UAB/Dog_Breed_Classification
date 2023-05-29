@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import time
-from utils import *
+from utils.utils import *
 import copy
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -65,7 +65,8 @@ def train(model, dataloaders, criterion, optimizer, num_epochs=25):
             else:
                 model.eval()  # Set model to evaluate mode
 
-            # Variables that keep track of the cumulative loss and the number of correct predictions in the current epoch
+            # Variables that keep track of the cumulative loss and
+            # the number of correct predictions in the current epoch
             running_loss = 0.0
             running_corrects = 0
 
@@ -85,7 +86,8 @@ def train(model, dataloaders, criterion, optimizer, num_epochs=25):
                     loss = criterion(outputs, labels)
                     losses[phase].append(loss.item())
 
-                    # The predictions are obtained by taking the maximum value along the appropriate dimension of the outputs.
+                    # The predictions are obtained by taking the maximum value along the
+                    # appropriate dimension of the outputs.
                     _, preds = torch.max(outputs, 1)
 
                     # backward + optimize only if in training phase
@@ -151,10 +153,6 @@ def training_pipeline(model_to_train, model_name, dataloaders, optimizer, epochs
         Contains the optimizer for the training.
     epochs : int, optional
         Define the number of epochs to train the model. The default is 25.
-    learning_rate : float, optional
-        Defines the learning rate of the optimizer. The default is 0.001.
-    momentum : float, optional
-        Defines the momentum of the optimizer. The default is 0.9.
     save_model: bool, optional
         If true saves the best weights of the trained model. The default is False.
     save_plot: bool, optional

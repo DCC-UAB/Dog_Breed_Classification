@@ -1,7 +1,5 @@
 import pandas as pd
 from tqdm import tqdm
-import re
-import torch.nn as nn
 import torch
 
 # Falta importar els labels
@@ -33,7 +31,6 @@ def test_on_fold(model, test_loader, model_name="", optimizer_name="", load_weig
         model.load_state_dict(torch.load(path, device))
 
     predictions, accuracy = test(model, test_loader)
-    
 
     return predictions, accuracy
 
