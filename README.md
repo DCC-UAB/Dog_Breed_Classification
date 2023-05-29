@@ -66,8 +66,8 @@ Run the following command: ``conda env create --file environment.yml `` to creat
 
 ```
 conda env create -f environment.yml
-
 ```
+
 ```
 conda activate DogBreed
 ```
