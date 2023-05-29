@@ -71,6 +71,16 @@ conda env create -f environment.yml
 ```
 conda activate DogBreed
 ```
+## Before the main code
+You have to download the kaggle folders and unzip them on a folder called `Dog-Breed-classif` so you have the following estructure:
+```bash
+Dog-Breed-classif
+  ├── test
+  ├── train
+  └── labels.csv
+```
+
+Then you have to execute the `FolderClassification.py` script on the data folder. After this the code is ready to be executed.
 
 To run the main code:
 ```
