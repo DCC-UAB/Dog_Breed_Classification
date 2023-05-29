@@ -61,7 +61,7 @@ Our code follows the next structure :
 ## Code
 The given code allows us to run the training of the data and its test with several models with the Dog Breed dataset. To run it, we need tho download the github. Before running the code you have to create a local environment with conda and activate it. The provided [environment.yml] file has all the required dependencies. 
 
-Run the following command: ``conda env create --file environment.yml `` to create a conda environment with all the required dependencies and then activate it:
+Run the following command: ``conda env create --file environment.yml `` to create a conda environment with all the required dependencies and then activate it, this will take a while:
 
 
 ```
@@ -82,7 +82,7 @@ Dog-Breed-classif
 
 Then you have to execute the `FolderClassification.py` script on the data folder. After this the code is ready to be executed.
 
-To run the main code:
+To run the **main** code:
 ```
 python main.py
 ```
