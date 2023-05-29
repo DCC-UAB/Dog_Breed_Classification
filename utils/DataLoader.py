@@ -1,22 +1,26 @@
+# Imports
 import random
 import torch
 import torchvision
 import pandas as pd
 
-
 class MyDataset(torch.utils.data.Dataset):
+    
+    # Constructor: takes subset (data) and transform (optional data transform function).
     def __init__(self, subset, transform=None):
-        self.subset = subset
-        self.transform = transform
+        self.subset = subset  
+        self.transform = transform  
 
+    # Returns the item at the given index, applies transform if it exists.
     def __getitem__(self, index):
-        x, y = self.subset[index]
-        if self.transform:
+        x, y = self.subset[index]  
+        if self.transform:  
             x = self.transform(x)
-        return x, y
+        return x, y  
 
+    # Returns the size of the dataset.
     def __len__(self):
-        return len(self.subset)
+        return len(self.subset)  
 
 
 def dogs_dataset_dataloders(transformer, dataset_path, batch_size=12,
