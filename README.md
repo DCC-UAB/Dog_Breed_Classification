@@ -93,7 +93,7 @@ A menu will be displayed at the terminal where the user can select which actions
 
 The weight loading in the only test option of the menu needs to open the saved weigths of the selected model in the folder `.\models`. So if the original model is a pretrained one we have to select "y" when the menu asks us if we want it to be pretrained, the feature extraction option has no impact because then we will load our saved weights. Also in the part of the optimizer it is only to take the optimizer's name so the different parameters selected during this specific part of the menu will have no impact on the test we will do to our model. This redundant option selection it is due a lack of time.
 
-In addition, we performed several tests removing the background in the dataset without success. Since we have few images for training and they could not be used to train with pre-trained models because these have been trained with complete images and passing these new ones did not improve the accuracy. Consequently, we have mentioned it in the work but we have not used it.
+In addition, we performed several tests removing the background in the dataset without success. Since we have few images for training and they could not be used to train with pre-trained models because these have been trained with complete images and passing these new ones did not improve the accuracy. Consequently, we have mentioned it in the work but we have not used it. It should be added that the library that allows us to remove the background has compatibility problems with some more updated versions of other libraries, we recommend using Google Colab as it has all the compatibilities.
 
 ## Contributors
 Here are the names and UAB mails of each group member:
