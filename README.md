@@ -63,8 +63,13 @@ The given code allows us to run the training of the data and its test with sever
 
 Run the following command: ``conda env create --file environment.yml `` to create a conda environment with all the required dependencies and then activate it:
 
+
 ```
-conda activate Dog-breed
+conda env create -f environment.yml
+
+```
+```
+conda activate DogBreed
 ```
 
 To run the main code:
