@@ -3,6 +3,22 @@ import torch.nn as nn
 
 
 def feature_extraction(model, img):
+    """
+    Description
+    -----------
+    Performs feature extraction from a convolutional neural network using the PyTorch 
+    library and visualizes the outputs of each convolutional layer.
+    
+    Parameters
+    ----------
+    model: class
+       contain the convolutional neural network
+    img: PIL image
+        input image to do the feature extraction
+    
+    Returns
+    -------
+    """
     # Initialize variables
     no_of_layers=0
     conv_layers=[]
