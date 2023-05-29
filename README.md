@@ -17,17 +17,20 @@ The primary objective of the Dog Breed Classifier project is to develop an advan
 ## Code structure
 Our code follows the next structure :
 ```bash
-├── Data
-│   ├── __init__.py
+├── data
 │   ├── FolderClassification.py
+│   ├── BackgroundRemove.py
+│   ├── datos.txt
 │   └── ImageExamples.py
 ├── models
 │   ├── __init__.py
-│   ├── model.py
+│   └── model.py
 ├── utils
 │   ├── __init__.py
 │   ├── DataLoader.py
 │   ├── Transformations.py
+│   ├── FeatureExtraction.py
+│   ├── heatmap.py
 │   ├── train.py
 │   ├── test.py
 │   ├── menu.py
@@ -50,13 +53,10 @@ Our code follows the next structure :
 ├── README.md
 ├── LICENSE
 ├── enviroment.yml
+├── .gitignore
+├── Requirements.txt
 └── Demostracio_resultats.ipynb
 ```
-## Example Code
-The given code is a simple CNN example training on the MNIST dataset. It shows how to set up the [Weights & Biases](https://wandb.ai/site)  package to monitor how your network is learning, or not.
-
-Before running the code you have to create a local environment with conda and activate it. The provided [environment.yml](https://github.com/DCC-UAB/XNAP-Project/environment.yml) file has all the required dependencies. Run the following command: ``conda env create --file environment.yml `` to create a conda environment with all the required dependencies and then activate it:
-
 
 ## Code
 The given code allows us to run the training of the data and its test with several models with the Dog Breed dataset. To run it, we need tho download the github. Before running the code you have to create a local environment with conda and activate it. The provided [environment.yml] file has all the required dependencies. 
